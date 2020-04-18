@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block heading %}
+  <div class="jumbotron">
+    <h1 class="display-4">Notes (Session)</h1>
+  </div>
+
+{% endblock %}
+
+{% block body %}
+
+  <form action="{{url_for('index')}}" method="post">
+    <div class="form-group">
+      <label for="note">Note</label>
+      <input class="form-control" type="text" id="note" name="note" placeholder="Enter note here">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Add note</button>
+  </form>
+
+  <table class="table">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Note</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for note in notes %}
+        {% set list = note.split('-') %}
+        <tr>
+          <th scope="row">{{ list[0] }}</th>
+          <td>{{ list[1] }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <br>
+
+
+
+{% endblock %}
